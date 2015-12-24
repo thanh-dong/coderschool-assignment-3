@@ -9,9 +9,9 @@ class Event < ActiveRecord::Base
 
   def self.search(keyword)
     if keyword
-      where('? <= ends_at AND name LIKE ?', DateTime.current, "%#{keyword}%")
+      where('? <= ends_at AND name LIKE ? AND published = TRUE', DateTime.current, "%#{keyword}%")
     else
-      where('? <= ends_at', DateTime.current)
+      where('? <= ends_at AND published = TRUE', DateTime.current)
     end
   end
 

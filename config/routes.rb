@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :tickets
   end
 
+  resources :tickets
   get 'sign_up' => 'users#new'
   get 'sign_in' => 'sessions#new'
   post 'authenticate' => 'sessions#create'
@@ -16,6 +17,10 @@ Rails.application.routes.draw do
   get 'my_events' => 'events#get_my_events'
 
   get 'publish_event' => 'events#publish'
+
+  get 'new_ticket_type' => 'tickets#new_ticket_type'
+  get 'ticket_types' => 'tickets#new_ticket_type'
+  post 'create_ticket' => 'tickets#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

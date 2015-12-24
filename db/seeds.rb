@@ -27,6 +27,7 @@ e = Event.create({
   venue: dalat,
   category: Category.find_by(name: 'Everything Else'),
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/10/25/C6A1A5.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  published: true,
   extended_html_description: <<-DESC
     <p style="text-align:center"><span style="font-size:20px">VIỆT NAM THỬ THÁCH CHIẾN THẮNG 2016</span></p>
     <p style="text-align:center"><span style="font-size:20px">Giải đua xe đạp địa hình 11-13/03/2016</span></p>
@@ -36,8 +37,8 @@ e = Event.create({
     <p style="text-align:center"><span style="font-size:16px"><strong><span style="background-color:transparent; color:rgb(0, 0, 0)">www.vietnamvictorychallenge.com. </span></strong></span></p>
   DESC
 })
-e.ticket_types << TicketType.create(name: '2016 Việt Nam Thử Thách Chiến Thắng dành cho những tay đua đăng kí sớm.', price: 500000, max_quantity: 95)
-e.ticket_types << TicketType.create(name: 'Việt Nam Thử Thách Chiến Thắng ( Giá chính thức)', price: 2000000, max_quantity: 5)
+e.ticket_types << TicketType.create(name: '2016 Việt Nam Thử Thách Chiến Thắng dành cho những tay đua đăng kí sớm.', price: 500000, max_quantity: 95, sold_quantity: 0)
+e.ticket_types << TicketType.create(name: 'Việt Nam Thử Thách Chiến Thắng ( Giá chính thức)', price: 2000000, max_quantity: 5, sold_quantity: 0
 
 
 # Second event:
@@ -55,6 +56,7 @@ e = Event.create({
   starts_at: DateTime.parse('Sat, 16 Jan 2016, 8:00 PM+0700'),
   ends_at: DateTime.parse('Sat, 16 Jan 2016, 10:30 PM+0700'),  
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/12/11/C68636.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  published: true,
   extended_html_description: <<-DESC
   <p style="text-align:justify"> </p>
 
@@ -118,10 +120,10 @@ e = Event.create({
 })
 
 
-e.ticket_types << TicketType.create(name: 'Vé loại A', price: 500000, max_quantity: 10)
-e.ticket_types << TicketType.create(name: 'Vé loại B', price: 300000, max_quantity: 50)
-e.ticket_types << TicketType.create(name: 'Vé loại C', price: 200000, max_quantity: 100)
-e.ticket_types << TicketType.create(name: 'Vé loại D', price: 150000, max_quantity: 200)
+e.ticket_types << TicketType.create(name: 'Vé loại A', price: 500000, max_quantity: 10, sold_quantity: 0)
+e.ticket_types << TicketType.create(name: 'Vé loại B', price: 300000, max_quantity: 50, sold_quantity: 0)
+e.ticket_types << TicketType.create(name: 'Vé loại C', price: 200000, max_quantity: 100, sold_quantity: 0)
+e.ticket_types << TicketType.create(name: 'Vé loại D', price: 150000, max_quantity: 200, sold_quantity: 0)
 
 # Third event - Merry Christmas Never Alone
 
@@ -138,6 +140,7 @@ e = Event.create({
   venue: gap,
   category: Category.find_by(name: 'Entertainment'),
   hero_image_url:'https://az810747.vo.msecnd.net/eventcover/2015/12/12/78534E.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  published: true,
   extended_html_description: <<-DESC
          <p>
   <span style="background-color:rgb(255, 255, 255); color:rgb(20, 24, 35); font-family:helvetica,arial,sans-serif; font-size:14px">* Bạn một m&igrave;nh, bạn FA ?</span><br />
@@ -157,4 +160,4 @@ e = Event.create({
                         
   DESC
 })  
-e.ticket_types << TicketType.create(name: 'General', price: 99000, max_quantity: 1000)
+e.ticket_types << TicketType.create(name: 'General', price: 99000, max_quantity: 1000, sold_quantity: 0)

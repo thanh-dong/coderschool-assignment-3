@@ -41,7 +41,7 @@ class EventsController < ApplicationController
       @event.save
       get_my_events
     else
-      redirect_to my_events_path, flash: {error: "Your event is not ready to publish yet"}
+      redirect_to my_events_path, flash: {error: "Your event should have at least 1 ticket type before publishing"}
     end
   end
 
