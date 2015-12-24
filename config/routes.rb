@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :venues
   resources :orders
   resources :users
   root 'events#index'
