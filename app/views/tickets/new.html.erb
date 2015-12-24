@@ -1,9 +1,84 @@
-<div class="container tickets-buy">
-  <h2> <%= @event.name %> </h2>
-  <ul>
-    <% @event.ticket_types.each do |type| %>
-      <li> <%= type.name %> </li>
-    <% end %> 
-  </ul>
-</div>  
+<div class="container-fluid no-pad events-detail">
+  <div class="row no-pad">
+    <div class="col-md-3 sidebar">
+      <p>
+        book your tickets here
+      </p>
+      <div class="ticket-list">
+        <%= form_for(Order.new, url: book_path, html: {class: "book-form"})  do |f| %>
+        <div class="form-group">
 
+
+          <div class="form-group">
+              <%= f.select(:ticket_type, {}, {prompt: "Please choose the ticket type"}, {:class => 'form-control ticket-type-selector'}) do%>
+                <% if @event.ticket_types %>
+                  <% @event.ticket_types.each do |ticket|%>
+                    <% if @ticket.try(:id) == ticket.id %>
+                      <%= content_tag(:option, ticket.price, {value: ticket.id, selected: 'selected'}) %>
+                    <% else %>
+                      <%= content_tag(:option, ticket.price, value: ticket.id) %>
+                    <% end %>
+                  <% end %>
+                <% end%>
+              <% end %>
+          </div>
+          <div class="form-group">
+              <%= f.select(:quantity, {}, {prompt: "How many tickets do you want?"}, {:class => 'form-control quantity-chooser'}) do%>
+                <% @max_ticket.times do |index| %>
+                  <%= content_tag(:option, index+1, value: index+1) %>
+                <% end%>
+              <% end %>
+          </div>
+        </div>
+        <%= f.hidden_field :event, :value => @event.id%>
+        <%= f.hidden_field :submit_type, class: 'submit-type', :value => 'update_quantity'%>
+        <%= f.submit 'BOOK', class: 'btn btn-block btn-success book-btn' %>
+        <%= link_to 'Cancel', root_path , class: "btn btn-block btn-danger", style: 'width: 100%;' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-9 event-content">
+      <div class="hero-img hidden-sm-down" style="background-image: url(<%= @event.hero_image_url %>); background-size: cover;"> </div>
+      <div class="container">
+        <h3> <%= @event.name %> </h3>
+        <div class="pull-left">
+          <%= fa_icon 'clock-o' %>
+        </div>
+        <div class="time-details">
+          <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %>
+        </div>
+
+
+
+        <div class="pull-left">
+          <%= fa_icon 'map-marker' %>
+        </div>
+        <div class="venue-details">
+         <%= @event.venue.name %>
+         <br/>
+         <%= @event.venue.full_address %>
+        </div>
+
+        <div class="img-spacer">
+          <%= image_tag 'shadow-top.png' %>
+        </div>
+        <div class="extended-description">
+          <%= @event.extended_html_description.html_safe %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.book-btn').click(function() {
+    $('.submit-type').val('book')
+  })
+
+  $('.ticket-type-selector').on('change',function() {
+    $('.book-form').submit()
+  })
+
+
+</script>

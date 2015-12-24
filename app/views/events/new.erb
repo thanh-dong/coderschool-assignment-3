@@ -1,0 +1,50 @@
+<div class="row create-event">
+  <div class="col-md-4 col-md-offset-4">
+    <%= form_for(Event.new, html: {class: "new-event"})  do |f| %>
+        <div class="form-group">
+          <%= f.text_field 'name', class: 'form-control', placeholder: 'Event name'%>
+        </div>
+        <div class="form-group">
+          <%= f.text_area 'extended_html_description', class: 'form-control', placeholder: 'Description'%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field 'hero_image_url', class: 'form-control', placeholder: 'Image url'%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field 'starts_at', class: 'form-control', id: 'start-date-time-picker', placeholder: 'Start date'%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field 'ends_at', class: 'form-control', id: 'end-date-time-picker', placeholder: 'End date'%>
+        </div>
+        <div class="form-group">
+          <%=f.select(:category_id, {}, {}, {:class => 'form-control'}) do%>
+              <% if @categories.count > 0 %>
+                  <% @categories.each do |category| %>
+                      <%= content_tag(:option, category.name, value: category.id) %>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%=f.select(:venue_id, {}, {}, {:class => 'form-control'}) do%>
+              <% if @venues.count > 0 %>
+                  <% @venues.each do |venue| %>
+                      <%= content_tag(:option,  "#{venue.name} - #{venue.region.name}", value: venue.id) %>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="form-group">
+
+          <%= f.submit 'Create', class: 'btn btn-block btn-success' %>
+          <%= link_to 'Cancel', root_path , class: "btn btn-block btn-danger", style: 'width: 100%;' %>
+        </div>
+        <%= f.hidden_field :created_by, :value => session[:user_id]%>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $( "#start-date-time-picker" ).datetimepicker();
+    $( "#end-date-time-picker" ).datetimepicker();
+</script>

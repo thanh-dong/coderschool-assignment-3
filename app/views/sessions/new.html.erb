@@ -1,0 +1,21 @@
+<div class="login">
+  <%= form_for(User.new, url: authenticate_path, html: {class: "form-signin"})  do |f| %>
+    <div class="app-title">
+      <h1>Please sign in</h1>
+    </div>
+    <div class="login-screen">
+      <div class="login-form">
+        <div class="control-group">
+          <%= f.text_field 'email', class: 'login-field', placeholder: 'E-mail'%>
+        </div>
+        <div class="control-group">
+          <%= f.password_field 'password', class: 'login-field', placeholder: 'Password' %>
+        </div>
+        <div class="control-group">
+          <%= f.submit 'Sign In', class: 'btn btn-primary btn-large btn-block' %>
+        </div>
+        <%= link_to 'Cancel', root_path, class: 'btn btn-secondary btn-large btn-block'%>
+      </div>
+    </div>
+  <% end %>
+</div>

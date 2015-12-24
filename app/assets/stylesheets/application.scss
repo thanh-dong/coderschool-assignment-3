@@ -3,4 +3,13 @@
 @import "col-helpers";
 @import "nav";
 @import "events";
+@import "users";
+@import 'bootstrap-datetimepicker';
 
+.alert {
+  position: fixed;
+  width: 20%;
+  top: 65px;
+  right: 10px;
+  z-index: 1000;
+}

@@ -31,6 +31,15 @@ gem 'simple_form'
 gem 'quiet_assets'
 gem 'better_errors', group: :development
 gem 'font-awesome-rails'
+gem 'bcrypt', '~> 3.1.7'
+gem 'underscore-rails'
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -50,4 +59,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
